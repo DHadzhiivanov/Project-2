@@ -16,6 +16,8 @@ while i<len(plaintext):
 	else:
 		i+=1
 
+if len(prepared) % 2 != 0:
+	prepared += "x"
 
 spaced_word = " ".join([prepared[i:i+2] for i in range(0, len(prepared), 2)])
 
