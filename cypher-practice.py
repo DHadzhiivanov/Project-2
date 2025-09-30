@@ -1,15 +1,22 @@
 #every 2 letters a space will be added.
-plaintext = input("enter word: ")
+plaintext = input("enter word: ").lower()
 
-chars = list(plaintext)
+i=0
+prepared=""
 
-for i in range(len(chars) - 1):
-	if chars[i] == chars[i+1]:
-		chars.insert(i+1,'x')
-		break
+while i<len(plaintext):
+	prepared += plaintext[i]
+	if i + 1 < len(plaintext):
+		if plaintext[i] == plaintext[i+1]:
+			prepared += "x"
+			i+=1
+		else:
+			prepared+=plaintext[i+1]
+			i+=2
+	else:
+		i+=1
 
-modified = "".join(chars)
 
-spaced_word = " ".join([modified[i:i+2] for i in range(0, len(modified), 2)])
+spaced_word = " ".join([prepared[i:i+2] for i in range(0, len(prepared), 2)])
 
-print(spaced_word)
+print("".join(spaced_word))
