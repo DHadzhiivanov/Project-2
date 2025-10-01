@@ -8,27 +8,66 @@ Table of Contents:
 1. Introduction
 
 2. Objective
+The objective of this project is to create a notepad application which will keep your information secure by methods of encryption.
+The objective will be developed within four weeks.
 
+Specifically, the project aims to:
+	- Teach encryption methods
+	- Teach algoritms to implement the encryption methods
+	- 
+My contribution:
+	- Research: Finding resources and learning skills to apply in my project.
+	- Design: A clean and intuitive user interface
+	- Coding: Developing the algoritms for encryption
+	- Testing: Ensuring the encryption works properly
+	- Documentation: 
 3. Main Question
-
+What are the most adequate methods for my app? (secure,efficient)?
+How can we apply encryption methods to keep our personal information safe?
 4. Functional Requirements
 	4.1 MoSCoW Prioritization
-	
+	Must Have:
+	- Interactive notepad application.
+	- Text input.
+	- Encryption when saving the file.
+	- Decryption when needing access to the contents of the file.
+	Should have:
+	- Friendly and intuitive UI
+	Could have:
+	- Modern graphic interface
+	Won't have:
+	- Animations
 5. Project Design and Working Methods
 	5.1 SMART Project Goal
-
+	Specific: Build a notepad application that will encrypt your information on save
+	Measurable: 
+	Accountable: 
+	Realistic/Relevant:
+	Time Frame: 4 Weeks
 	5.2 Agile Methodology
-
-	User Stories
+	The project follows Agile metodology to ensure flexibility and continuous improvement.
 
 	Sprint Planning
-	
+	- Sprint 1 (Week 1): Do Analysis document and define criteria; Research about encryption methods.
+	- Sprint 2 (Week 2): Do Design document, think about what encryption will be used and ask for feedback.
+	- Sprint 3 (Week 3): Do Realisation document. Design the UI and write the algoritms for encryption.
+	- Sprint 4 (Week 4): Do Testing, put the evidence in portfolio and ask for feedback.
 	Agile Practices
-
+	- Daily self-checks: Track progress against functional requirements.
+	- Sprint Reviews: Demo prototype to peers, teachers or self-test.
+	- Retrospectives: Reflect on coding challenges and workflow efficiency.
+	User Stories
+	- As a user, I want my information to be safe.
+	- As a user, I want my information to be available for reading and redacting only by authorized people.
+	- As a user, I want an intuitive interface.
+	- As a developer, I want secure encryption algoritms.
 6. Stakeholders
-
+Me
+Teachers
+Peers
 7. Target Audience
-
+People with basic computer knowledge and a need for a secure writing environment.
+companies who want to secure sensitive information
 8. Precognitions
 
 9. Applied Areas of Knowledge
@@ -41,4 +80,13 @@ Table of Contents:
 
 13. Conclusion
 
+Must have
+Text
+Save
+Encipt
+Decoding
+
+
+Cybersecurity
+software design
 
