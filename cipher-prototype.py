@@ -1,6 +1,7 @@
 import random
 import string
 import tkinter as tk
+from tkinter import filedialog
 
 # Create the main window
 window = tk.Tk()
@@ -31,6 +32,14 @@ text_boxin.pack(padx=10, pady=10, side=tk.LEFT)
 # Add a text box for output
 text_boxout = tk.Text(window, width=25, bg="lightgrey", font="Arial,12")
 text_boxout.pack(padx=10, pady=10, side=tk.RIGHT)
+
+# Save to file
+
+
+def save_to_file():
+    file = filedialog.asksaveasfile(defaultextension=".txt")
+    file.write(text_boxout.get("1.0", tk.END))
+    file.close()
 
 # Key generation
 
@@ -127,4 +136,8 @@ set_key_button.pack(pady=10)
 clear_button = tk.Button(window, command=clear_text_boxes,
                          text="Clear", font="Arial, 12", bg="white")
 clear_button.pack(pady=10)
+
+save_button = tk.Button(window, command=save_to_file,
+                        text="Save to File", font="Arial, 12", bg="white")
+save_button.pack(pady=10)
 window.mainloop()
