@@ -1,0 +1,24 @@
+Design
+
+Student name: David Hadzhiivanov
+Student numver: 5670330
+
+Table of Contents:
+
+1. User Journey
+The user journey represents the step-by-step interaction of the user with the encryption tool.
+
+	- Start menu: The user is met with the full interface of the application.
+	- Inserting text: The user starts typing text in the specified field.
+	- Encryption: With the press of the "Encrypt" button the user encrypts everything he has written up to this point and the encrypted text is shown in the specified text box.
+	- Saving File: The user has the option to save the encrypted text to a file with the .txt extension to a directory of his choice.
+	- Saving Key: A unique key is generated every time the application is started and after encryption the user has the choice to save the current key used for encryption so that it can be reused when decrypting the text. After each encryption it is recommended to save the key so that you can successfully decrypt the information later.
+	- Decrypting: The user can place the encrypted text in the specified text box and with the press of the "Decrypt" button the text will be decrypted back to its original form.
+	- Setting a Custom Key: The user has the choice to set a custom key which will therefore be used to decrypt the message. Upon pressing the "Set Key" button, a seperate window will open prompting the user to insert a key in the specified field.
+	- Clearing Text Boxes: The user has the option to clear both text boxes of any text. After pressing the "Clear" button the user is prompted with a message to confirm his decision to prevent accidental presses.
+
+User Journey Diagram:
+
+2. Wireframe Diagram
+The wireframe diagram displays each stage, showing how the app will look from the perspective of the user.
+
