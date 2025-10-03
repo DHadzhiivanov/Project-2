@@ -2,6 +2,7 @@ import random
 import string
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import messagebox
 
 # Create the main window
 window = tk.Tk()
@@ -41,6 +42,12 @@ def save_to_file():
     file.write(text_boxout.get("1.0", tk.END))
     file.close()
 
+
+def save_key(key):
+    keyfile = filedialog.asksaveasfile(defaultextension=".txt")
+    keyfile.write(key)
+    keyfile.close()
+
 # Key generation
 
 
@@ -79,7 +86,7 @@ def decrypt_message(message, key):
 def open_new_window():
     new_window = tk.Toplevel(window)
     new_window.title("New Window")
-    new_window.geometry("400x400")
+    new_window.geometry("400x200")
     new_window.configure(bg="white")
     new_label = tk.Label(
         new_window, text="Insert your key here:", font="Arial,20", bg="white")
@@ -105,7 +112,7 @@ def on_encrypt():
     text_boxin.delete("1.0", tk.END)
     encrypted = encrypt_message(text, key)
     text_boxout.delete("1.0", tk.END)
-    text_boxout.insert(tk.END, encrypted + f"\n\nKey: {key}")
+    text_boxout.insert(tk.END, encrypted)
 
 
 def on_decrypt():
@@ -117,8 +124,9 @@ def on_decrypt():
 
 
 def clear_text_boxes():
-    text_boxin.delete("1.0", tk.END)
-    text_boxout.delete("1.0", tk.END)
+    if messagebox.askquestion("askquestion", "Are you sure?") == 'yes':
+        text_boxin.delete("1.0", tk.END)
+        text_boxout.delete("1.0", tk.END)
 
 
 # Buttons
@@ -133,11 +141,17 @@ decrypt_button.pack(side=tk.BOTTOM, pady=10)
 set_key_button = tk.Button(
     window, command=open_new_window, text="Set Key", font="Arial, 12", bg="white")
 set_key_button.pack(pady=10)
+
 clear_button = tk.Button(window, command=clear_text_boxes,
                          text="Clear", font="Arial, 12", bg="white")
-clear_button.pack(pady=10)
+clear_button.pack(pady=10, side=tk.BOTTOM)
 
 save_button = tk.Button(window, command=save_to_file,
                         text="Save to File", font="Arial, 12", bg="white")
 save_button.pack(pady=10)
+
+save_key_button = tk.Button(window, command=lambda: save_key(
+    key), text="Save Key", font="Arial,12", bg="white")
+save_key_button.pack(pady=10)
+
 window.mainloop()
