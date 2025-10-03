@@ -13,11 +13,11 @@ window.configure(bg="white")
 
 # Add a label and instructions
 label = tk.Label(window, text="This is a cipher tool",
-                 font="Arial,20", bg="white")
+                 font="Arial 20 bold", bg="white")
 instructions_label = tk.Label(
     window,
     text="This tool allows you to encrypt and decrypt messages using a simple substitution cipher.\nWhenever you're ready, press 'Encrypt'.",
-    font="Arial,20",
+    font="Arial 14",
     bg="white",
     wraplength=800,
     justify="center"
@@ -27,11 +27,11 @@ label.pack(pady=20, padx=20)
 instructions_label.pack(pady=10, padx=10)
 
 # Add a text box for input
-text_boxin = tk.Text(window, width=25, bg="lightgrey", font="Arial,12")
+text_boxin = tk.Text(window, width=25, bg="lightgrey", font="Arial")
 text_boxin.pack(padx=10, pady=10, side=tk.LEFT)
 
 # Add a text box for output
-text_boxout = tk.Text(window, width=25, bg="lightgrey", font="Arial,12")
+text_boxout = tk.Text(window, width=25, bg="lightgrey", font="Arial")
 text_boxout.pack(padx=10, pady=10, side=tk.RIGHT)
 
 # Save to file
@@ -89,10 +89,10 @@ def open_new_window():
     new_window.geometry("400x200")
     new_window.configure(bg="white")
     new_label = tk.Label(
-        new_window, text="Insert your key here:", font="Arial,20", bg="white")
+        new_window, text="Insert your key here:", font="Arial", bg="white")
     new_label.pack(pady=20, padx=20)
 
-    key_entry = tk.Entry(new_window, font="Arial,20", bg="lightgrey")
+    key_entry = tk.Entry(new_window, font="Arial", bg="lightgrey")
     key_entry.pack(pady=10, padx=10)
 
     def on_submit():
@@ -101,7 +101,7 @@ def open_new_window():
         new_window.destroy()
 
     submit_button = tk.Button(
-        new_window, text="Submit", command=on_submit, font="Arial,12", bg="white")
+        new_window, text="Submit", command=on_submit, font="Arial", bg="white")
     submit_button.pack(pady=10)
 
 # Button handlers
@@ -124,34 +124,34 @@ def on_decrypt():
 
 
 def clear_text_boxes():
-    if messagebox.askquestion("askquestion", "Are you sure?") == 'yes':
+    if messagebox.askquestion("Clear Text", "Are you sure?") == 'yes':
         text_boxin.delete("1.0", tk.END)
         text_boxout.delete("1.0", tk.END)
 
 
 # Buttons
 encrypt_button = tk.Button(window, command=on_encrypt,
-                           text="Encrypt", font="Arial, 12", bg="white")
+                           text="Encrypt", font="Arial", bg="white")
 encrypt_button.pack(side=tk.TOP, pady=10)
 
 decrypt_button = tk.Button(window, command=on_decrypt,
-                           text="Decrypt", font="Arial, 12", bg="white")
+                           text="Decrypt", font="Arial", bg="white")
 decrypt_button.pack(side=tk.BOTTOM, pady=10)
 
 set_key_button = tk.Button(
-    window, command=open_new_window, text="Set Key", font="Arial, 12", bg="white")
+    window, command=open_new_window, text="Set Key", font="Arial", bg="white")
 set_key_button.pack(pady=10)
 
 clear_button = tk.Button(window, command=clear_text_boxes,
-                         text="Clear", font="Arial, 12", bg="white")
+                         text="Clear", font="Arial", bg="white")
 clear_button.pack(pady=10, side=tk.BOTTOM)
 
 save_button = tk.Button(window, command=save_to_file,
-                        text="Save to File", font="Arial, 12", bg="white")
+                        text="Save to File", font="Arial", bg="white")
 save_button.pack(pady=10)
 
 save_key_button = tk.Button(window, command=lambda: save_key(
-    key), text="Save Key", font="Arial,12", bg="white")
+    key), text="Save Key", font="Arial", bg="white")
 save_key_button.pack(pady=10)
 
 window.mainloop()
