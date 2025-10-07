@@ -6,19 +6,54 @@ Student numver: 5670330
 Table of Contents:
 
 1. User Journey
+
 The user journey represents the step-by-step interaction of the user with the encryption tool.
 
-	- Start menu: The user is met with the full interface of the application.
-	- Inserting text: The user starts typing text in the specified field.
-	- Encryption: With the press of the "Encrypt" button the user encrypts everything he has written up to this point and the encrypted text is shown in the specified text box.
-	- Saving File: The user has the option to save the encrypted text to a file with the .txt extension to a directory of his choice.
-	- Saving Key: A unique key is generated every time the application is started and after encryption the user has the choice to save the current key used for encryption so that it can be reused when decrypting the text. After each encryption it is recommended to save the key so that you can successfully decrypt the information later.
-	- Decrypting: The user can place the encrypted text in the specified text box and with the press of the "Decrypt" button the text will be decrypted back to its original form.
-	- Setting a Custom Key: The user has the choice to set a custom key which will therefore be used to decrypt the message. Upon pressing the "Set Key" button, a seperate window will open prompting the user to insert a key in the specified field.
-	- Clearing Text Boxes: The user has the option to clear both text boxes of any text. After pressing the "Clear" button the user is prompted with a message to confirm his decision to prevent accidental presses.
+- Start Menu: The user is met with the main interface of the application.
+- Inserting Text: The user starts typing text in the input field.
+- Encryption: When the “Encrypt” button is pressed, the text is encrypted and the encrypted output appears in a separate field.
+- Saving File: The encrypted text can be saved as a .txt file in a directory of the user’s choice.
+- Saving Key: Each session generates a unique encryption key. The user can save this key for future decryption.
+- Decrypting: The user can load encrypted text, insert the saved key, and press “Decrypt” to restore the original content.
+- Setting a Custom Key: A separate window allows users to manually input a custom key for decryption.
+- Clearing Text Boxes: A “Clear” button resets both text fields, with a confirmation prompt to prevent accidental loss.
 
 User Journey Diagram:
 
 2. Wireframe Diagram
-The wireframe diagram displays each stage, showing how the app will look from the perspective of the user.
+
+The wireframe diagram displays each stage of the user interface from the user’s perspective.
+
+Core interface components:
+
+- Text input area for writing or pasting text.
+- Encrypted text output box.
+- Buttons: Encrypt, Decrypt, Set Key, Save Key, Save File, Clear Text.
+- Status bar for user feedback (e.g., “Encryption successful”, “Key saved”, etc.).
+- Simple top menu for “Help” or “About”.
+
+3. System Architecture
+
+The system will operate in two stages:
+
+	3.1 Local Prototype (Current Stage)
+
+	- Python-based desktop app using tkinter for UI and cryptography (Fernet or AES) for encryption.
+
+	- Saves encrypted text and key locally.
+
+	3.2 Final Web Version (Future Stage)
+
+	- Built with Flask for backend logic.
+
+	- Uses RSA encryption for login/registration.
+
+	- HTTPS secured connection with SSL/TLS for data protection.
+
+	- Deployed on a Raspberry Pi server using port forwarding for remote access.
+
+	- Protected with universal firewall and Fail2Ban to prevent unauthorized login attempts.
+
+This design ensures that the transition from local encryption to a fully online encrypted system remains smooth and secure.
+
 
