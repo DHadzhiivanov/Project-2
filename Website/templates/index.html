@@ -4,35 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure notepad</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Cipher Tool Web</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     <header>
-        <h1>Welcome to Secure Notepad</h1>
-        <p>Your notes are safe with us.</p>
-        <a href="/login" class="button">Login</a>
-        <a href="/register" class="button">Register</a>
+        <h1>Cipher Tool Web</h1>
+        <p>Encrypt and decrypt your messages securely.</p>
     </header>
     <main>
-        <section>
-            <h2>About Secure Notepad</h2>
-            <p>Secure Notepad is a web application that allows you to create, edit, and manage your notes securely. Your
-                data is encrypted and protected with strong security measures.</p>
-        </section>
-        <section>
-            <h2>Features</h2>
-            <ul>
-                <li>Create and edit notes</li>
-                <li>Secure user authentication</li>
-                <li>Data encryption</li>
-                <li>User-friendly interface</li>
-            </ul>
-        </section>
+        <form method="POST">
+            <label for="message"><b>Message:</b></label><br>
+            <textarea id="message" name="message" rows="5" cols="60">{{ message }}</textarea><br><br>
+            <button type="submit" name="action" value="encrypt">Encrypt</button>
+            <button type="submit" name="action" value="decrypt">Decrypt</button>
+        </form>
+        {% if encrypted %}
+        <h3>Encrypted Message:</h3>
+        <div class="output">{{ encrypted }}</div>
+        {% endif %}
+        {% if decrypted %}
+        <h3>Decrypted Message:</h3>
+        <div class="output">{{ decrypted }}</div>
+        {% endif %}
+        <p><b>Current Key:</b> {{ key }}</p>
     </main>
     <footer>
-        <p>&copy; 2024 Secure Notepad. All rights reserved.</p>
+        <p>&copy; 2024 Cipher Tool Web</p>
     </footer>
 </body>
 
