@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure notepad</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Secure Notepad</h1>
+        <p>Your notes are safe with us.</p>
+        <a href="/login" class="button">Login</a>
+        <a href="/register" class="button">Register</a>
+    </header>
+    <main>
+        <section>
+            <h2>About Secure Notepad</h2>
+            <p>Secure Notepad is a web application that allows you to create, edit, and manage your notes securely. Your
+                data is encrypted and protected with strong security measures.</p>
+        </section>
+        <section>
+            <h2>Features</h2>
+            <ul>
+                <li>Create and edit notes</li>
+                <li>Secure user authentication</li>
+                <li>Data encryption</li>
+                <li>User-friendly interface</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Secure Notepad. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
