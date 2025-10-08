@@ -1,9 +1,19 @@
 from flask import Flask, render_template, request
 from encryption import generate_key, encrypt_message, decrypt_message
+import sqlite3
 
 app = Flask(__name__)
 
 key = generate_key()
+
+# connection = sqlite3.connect("database.db")
+
+# cursor = connection.cursor()
+# cursor.execute("""CREATE TABLE IF NOT EXISTS sensordata (
+#                id INT AUTO_INCREMENT PRIMARY KEY,
+#                name VARCHAR(100) NOT NULL  )
+#                """)
+# connection.close()
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -12,6 +22,17 @@ def index():
     decrypted = ""
     message = ""
     action = ""
+
+    # connection = sqlite3.connect('database.db')
+    # cursor = connection.cursor()
+    # cursor.execute("""
+    #     INSERT INTO sensordata (id, name)  VALUES (NULL, 'test')
+    # """)
+    # connection.commit()
+    # connection.close()
+
+    # SELECT name FROM sensordata WHERE name = 'test'
+
     if request.method == "POST":
         message = request.form.get("message", "")
         action = request.form.get("action", "")
