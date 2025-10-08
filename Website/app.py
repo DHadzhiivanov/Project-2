@@ -22,5 +22,11 @@ def index():
     return render_template("index.html", encrypted=encrypted, decrypted=decrypted, message=message, key=key)
 
 
+@app.route("/login")
+def login():
+
+    return render_template("login.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
