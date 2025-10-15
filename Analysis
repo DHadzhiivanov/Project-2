@@ -6,80 +6,79 @@ Student number: 5670330
 Table of Contents:
 
 1. Introduction
-This project focuses on developing a secure notepad application that protects user data through encryption. Unlike a regular notepad, this application will automatically encrypt text and automatically decrypt them. The project aims to strengthen my understanding of encryption, algorithm design, and secure application development along with network and cloud basics, while also improving my ability to document and test software systematically.
+This project focuses on developing a secure, web-based notepad application that protects user data through encryption. Unlike a regular notepad, this application will automatically encrypt text when saving and decrypt it upon access. The goal is to strengthen my understanding of encryption, algorithm design, secure application development, and network fundamentals, while improving my ability to document and test software systematically.
 2. Objective
-The objective of this project is to create a web based notepad application which will keep your information secure by methods of encryption.
-This project will be developed within four weeks.
+The objective of this project is to create a web-based notepad application that keeps information secure through encryption methods.
 
 Specifically, the project aims to:
 	- Teach encryption methods.
-	- Teach algoritms to implement the encryption methods.
+	- Teach algorithms to implement the encryption methods.
 	- Teach networking basics to host my web site.
 	- Demonstrate how to integrate encryption with a user-friendly application.
 My contribution:
 	- Research: Finding resources and learning skills to apply in my project.
 	- Design: A clean and intuitive user interface.
-	- Coding: Developing the algoritms for encryption.
+	- Coding: Developing the web environment.
 	- Testing: Ensuring the encryption works properly.
 	- Documentation: Recording the entire process and results.
 3. Main Questions
-- What are the most adequate encryption methods for my app (secure,efficient)?
-a) which one is most secure, efficient?
-- How can we apply encryption methods to keep our personal information safe?
+- What are the most suitable encryption methods for this application in terms of security and efficiency?
+- How can encryption methods be applied to protect personal data?
 4. Functional Requirements
 	4.1 MoSCoW Prioritization
 	Must Have:
 	- Web environment
-	- Interactive notepad application.
-	- Text input.
-	- Encryption when saving the file.
-	- Decryption when opening the file.
+	- Interactive notepad interface.
+	- Text input capability.
+	- Encryption when saving files.
+	- Decryption when opening files.
 	Should have:
-	- Intuitive UI.
+	- Intuitive UI design.
 	- Secure storage of files.
 	Could have:
-	- Modern graphic interface.
+	- Modern graphic interface with responsive design.
 	Won't have:
-	- Animations
+	- Animations or unnecessary visual effects.
 5. Project Design and Working Methods
 	5.1 SMART Project Goal
-Within 4 weeks i will develop a notepad-like web application that encrypts the contents on save and decrypts them automatically.
-	- Specific: Build a notepad-like web application that encrypts your information on save.
+Within four weeks, I will develop a notepad-style web application that encrypts text on save and decrypts it upon access.
+	- Specific: Build a notepad-like web application that encrypts user data on save.
 	- Measurable: Application should be able to save and reopen encrypted files without data loss or corruption.
 	- Achieveable: The project is realistic for a beginner using Python, Flask.
 	- Realistic/Relevant: Learning encryption and file handling is achievable within four weeks and directly contributes to my IT skills.
-	- Time-Based: Completed within a four week timeframe.
+	- Time-Based: To be completed within a four week timeframe.
 	5.2 Agile Methodology
 	The project follows Agile metodology to ensure flexibility and continuous improvement.
 
 	Sprint Planning
 	- Sprint 1 (Week 1): Complete analysis, define criteria and research about encryption methods.
 	- Sprint 2 (Week 2): Create design document, decide what encryption will be used and ask for feedback.
-	- Sprint 3 (Week 3): Develop realisation document, design the UI and write the algorithms for encryption, and decryption.
+	- Sprint 3 (Week 3): Develop realisation document, build the UI, implement algorithms for encryption/decryption.
 	- Sprint 4 (Week 4): Perform testing, put the evidence in portfolio and ask for feedback.
 	Agile Practices
 	- Daily self-checks: Track progress against functional requirements.
 	- Sprint Reviews: Demo prototype to peers, teachers or self-test.
 	- Retrospectives: Reflect on coding challenges and workflow efficiency.
 	User Stories
-	- As a user, I want my information to be safe.
-	- As a user, I want my information to be available for reading and redacting only by authorized people.
-	- As a user, I want an intuitive interface.
-	- As a developer, I want secure encryption algorithms.
+	- As a user, I want my data to remain private and secure.
+	- As a user, I want to access and edit my data only after authentication.
+	- As a user, I want an intuitive, easy-to-use interface.
+	- As a developer, I want to implement secure and efficient encryption algorithms.
 6. Stakeholders
 Myself (Developer)
 Teachers (Reviewers)
 Peers (Testers, feedback providers)
 7. Target Audience
 Individuals with basic computer knowledge who need a secure writing environment.
-Companies or professionals who want to protect sensitive information.
+Companies or professionals who want to protect confidential notes and information.
 8. Precognitions
 - Flask programming knowledge.
 - Python programming knowledge.
-- Familiarity with libraries for GUI (e.g., Tkinter, PyQt).
+- Familiarity with web development principles (HTML, CSS basics).
 - Understanding of file handling in Python.
 - Introductory knowledge of cryptography concepts.
 - Introductory knowledge of networks and data security.
+- Introductory knowledge of networking, HTTPS, and SSL/TLS protocols.
 9. Applied Areas of Knowledge
 - Cybersecurity
 - Software design
@@ -89,12 +88,13 @@ Companies or professionals who want to protect sensitive information.
 - Peer and teacher feedback.
 - Exploratory coding tests.
 11. Risk Analysis
-- Encryption method chosen may not be secure enough.
-- Time limitations may prevent implementing advanced UI.
-- Lack of prior cryptography knowledge.
+- Chosen encryption algorithm may not meet desired security standards.
+- Time constraints may limit UI/UX polish.
+- Limited prior experience in cryptography and web security.
 12. Expected Learning Outcomes
-- Understand and implement encryption methods in a software project.
-- Gain experience in secure software development practices.
-- Improve Python and Flask programming and algorithmic problem-solving.
+- Understand and apply encryption in a real web application.
+- Improve knowledge of Flask, Python, and HTTPS/SSL integration.
+- Gain hands-on experience with secure software design and deployment.
+- Strengthen algorithmic thinking and systematic documentation skills.
 13. Conclusion
-This analysis defines the foundation for the secure notepad project. By researching encryption, designing an intuitive UI, coding the application, and validating its functionality, I will gain both technical and professional skills. The outcome will be a working application that demonstrates my ability to combine security, usability, and systematic project execution within a limited timeframe.
+This analysis defines the foundation for developing a secure notepad web application that combines encryption, usability, and accessibility. By researching encryption, designing an intuitive UI, coding the application, and validating its functionality, I will gain both technical and professional skills. The outcome will be a working application that demonstrates my ability to combine security, usability, and systematic project execution within a limited timeframe.
