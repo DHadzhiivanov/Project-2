@@ -4,18 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cipher Tool Web</title>
+    <title>SecurePad</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     <header>
         <a href="notes" filename="savednotes.html" name="notes">Notes</a>
-        <a href="login" filename="login.html" name="login">Login</a>
-        <a href="register" filename="register.html" name="register">Register</a>
+        <div name="logreg">
+            <form action="/login">
+                <button type="submit" value="login">Login</button>
+                <form action="/register">
+                    <button type="submit" value="register">Register</button>
+                </form>
+        </div>
     </header>
     <main>
-        <h1>Cipher Tool Web</h1>
+        {% if logedin %}
+        <h1>SecurePad</h1>
         <p>Encrypt and decrypt your messages securely.</p>
         <form method="POST">
             <label for="message"><b>Message:</b></label><br>
@@ -23,6 +29,7 @@
             <button type="submit" name="action" value="encrypt">Encrypt</button>
             <button type="submit" name="action" value="decrypt">Decrypt</button>
         </form>
+        {% endif %}
         {% if encrypted %}
         <h3>Encrypted Message:</h3>
         <div class="output">{{ encrypted }}</div>
@@ -34,9 +41,6 @@
         <p><b>Current Key:</b> {{ key }}</p>
     </main>
     <footer>
-        <form action="/login">
-            <button type="submit" value="login">Login</button>
-        </form>
         <p>&copy; 2024 Cipher Tool Web</p>
     </footer>
 </body>
