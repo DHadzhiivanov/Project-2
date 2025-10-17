@@ -10,10 +10,13 @@
 
 <body>
     <header>
-        <h1>Cipher Tool Web</h1>
-        <p>Encrypt and decrypt your messages securely.</p>
+        <a href="notes" filename="savednotes.html" name="notes">Notes</a>
+        <a href="login" filename="login.html" name="login">Login</a>
+        <a href="register" filename="register.html" name="register">Register</a>
     </header>
     <main>
+        <h1>Cipher Tool Web</h1>
+        <p>Encrypt and decrypt your messages securely.</p>
         <form method="POST">
             <label for="message"><b>Message:</b></label><br>
             <textarea id="message" name="message" rows="5" cols="60">{{ message }}</textarea><br><br>
