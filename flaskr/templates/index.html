@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecurePad</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <a href="notes" filename="savednotes.html" name="notes">Notes</a>
+        <div name="logreg">
+            <form action="/login">
+                <button type="submit">Login</button>
+            </form>
+            <form action="/register">
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </header>
+    <main>
+
+        <h1>SecurePad</h1>
+        <p>Encrypt and decrypt your messages securely.</p>
+        <form method="POST">
+            <label for="message"><b>Message:</b></label><br>
+            <textarea id="message" name="message" rows="5" cols="60">{{ message }}</textarea><br><br>
+            <button type="submit" name="action" value="encrypt">Encrypt</button>
+            <button type="submit" name="action" value="decrypt">Decrypt</button>
+        </form>
+
+        {% if encrypted %}
+        <h3>Encrypted Message:</h3>
+        <div class="output">{{ encrypted }}</div>
+        {% endif %}
+        {% if decrypted %}
+        <h3>Decrypted Message:</h3>
+        <div class="output">{{ decrypted }}</div>
+        {% endif %}
+        <p><b>Current Key:</b> {{ key }}</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Cipher Tool Web</p>
+    </footer>
+</body>
+
+</html>
