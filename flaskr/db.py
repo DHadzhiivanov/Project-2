@@ -58,3 +58,11 @@ sqlite3.register_converter(
 )
 # The call to sqlite3.register_converter() tells Python how to interpret timestamp values in the database.
 # We convert the value to a datetime.datetime.
+
+
+def init_app(app):
+    """Register database teardown and the init-db command with the app."""
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
+# app.teardown_appcontext() tells Flask to call that function when cleaning up after returning the response.
+# app.cli.add_command() adds a new command that can be called with the flask command.
