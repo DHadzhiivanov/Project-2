@@ -35,3 +35,26 @@ def close_db(e=None):
     # close_db checks if a connection was created by checking if g.db was set.
     # If the connection exists, it is closed.
     # Further down we will tell our application about the close_db function in the application factory so that it is called after each request.
+
+
+def init_db():
+    db = get_db()
+    with current_app.open_resource('schema.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+    # open_resource() opens a file relative to the flaskr package, which is useful since we won’t necessarily know where that location is when deploying the application later.
+    # get_db returns a database connection, which is used to execute the commands read from the file.
+
+
+@click.command('init-db')
+def init_db_command():
+    """Clear the existing data and create new tables."""
+    init_db()
+    click.echo('Initialized the database.')
+    # click.command() defines a command line command called init-db that calls the init_db function and shows a success message to the user. We can read Command Line Interface to learn more about writing commands.
+
+
+sqlite3.register_converter(
+    "timestamp", lambda v: datetime.fromisoformat(v.decode())
+)
+# The call to sqlite3.register_converter() tells Python how to interpret timestamp values in the database.
+# We convert the value to a datetime.datetime.
