@@ -4,7 +4,7 @@
 <title>{% block title %}{% endblock %} - SecurePad</title>
 
 <nav>
-    <h1>SecurePad</h1>
+    <h1><a href="{{url_for('home')}}"> SecurePad </a></h1>
     <ul>
         {% if g.user %}
         <li><span>{{ g.user['username'] }}</span>
@@ -13,6 +13,7 @@
         <li><a href="{{ url_for('auth.register') }}">Register</a>
         <li><a href="{{ url_for('auth.login') }}">Log In</a>
             {% endif %}
+
     </ul>
 </nav>
 <section class="content">
