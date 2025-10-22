@@ -50,9 +50,9 @@ def login():
             'SELECT * FROM user WHERE username = ?', (username,)
         ).fetchone()
         if user is None:
-            error = 'Incorrect username.'
+            error = 'Username or password is incorrect.'
         elif not check_password_hash(user['password'], password):
-            error = 'Password is incorrect.'
+            error = 'Username or password is incorrect.'
 
         if error is None:
             session.clear()
@@ -89,3 +89,19 @@ def login_required(view):
 
         return view(**kwargs)
     return wrapped_view
+
+
+# @bp.route('/<int:id>/disable', methods='POST',)
+# @login_required
+# def disable_account():
+#     if request.method == 'POST':
+#         confirmation = request.form['password']
+#         db = get_db()
+#         error = None
+
+#         if not check_password_hash(g.user['password'], confirmation):
+#             error = 'Wrong password.'
+#         else:
+#             get_db().execute()
+
+#     return redirect(url_for())

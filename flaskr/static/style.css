@@ -35,10 +35,12 @@ nav {
     display: flex;
     align-items: center;
     padding: 0 0.5rem;
+    gap: 0.5rem;
 }
 
-nav h1 {
-    flex: auto;
+nav h1,
+nav h3 {
+    flex: none;
     margin: 0;
 }
 
@@ -47,11 +49,17 @@ nav h1 a {
     padding: 0.25rem 0.5rem;
 }
 
+nav h3 a {
+    text-decoration: none;
+    padding: 0.25rem 0.25rem;
+}
+
 nav ul {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
+    margin-left: auto;
 }
 
 nav ul li a,
@@ -139,4 +147,44 @@ input.danger {
 input[type=submit] {
     align-self: start;
     min-width: 10em;
+}
+
+.dropbtn {
+    background-color: #00000000;
+    color: #377ba8;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: inherit;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a#disable {
+    color: #cc2f2e;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
