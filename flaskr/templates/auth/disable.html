@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h2>{% block title %}Disable Account{% endblock %}</h2>
+{% endblock %}
+
+{% block content %}
+<p>This will permanently remove your account and related data. You will be logged out.</p>
+
+<form method="post" action="{{ url_for('auth.disable') }}"
+    onsubmit="return confirm('Disable account? This cannot be undone!');">
+    <label for="password">Confirm your password</label><br>
+    <input id="password" name="password" type="password" required><br><br>
+    <button type="submit" class="danger">Disable Account</button>
+    <a href="{{ url_for('blog.home') }}">Cancel</a>
+</form>
+{% endblock %}

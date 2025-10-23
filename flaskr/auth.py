@@ -86,22 +86,38 @@ def login_required(view):
     def wrapped_view(**kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))
-
         return view(**kwargs)
     return wrapped_view
 
 
-# @bp.route('/<int:id>/disable', methods='POST',)
-# @login_required
-# def disable_account():
-#     if request.method == 'POST':
-#         confirmation = request.form['password']
-#         db = get_db()
-#         error = None
+@bp.route('/disable', methods=('GET',))
+@login_required
+def disable_page():
+    """Show a confirmation page with a form to disable the account."""
+    return render_template('auth/disable.html')
 
-#         if not check_password_hash(g.user['password'], confirmation):
-#             error = 'Wrong password.'
-#         else:
-#             get_db().execute()
 
-#     return redirect(url_for())
+@bp.route('/disable', methods=('POST',))
+@login_required
+def disable():
+    confirmation = request.form.get('password', '')
+    error = None
+
+    if not check_password_hash(g.user['password'], confirmation):
+        error = 'Wrong password.'
+        flash(error)
+        return redirect(url_for('blog.home'))
+
+    db = get_db()
+    try:
+        db.execute('DELETE FROM post WHERE author_id = ?', (g.user['id'],))
+        db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
+        db.commit()
+    except db.IntegrityError:
+        error = 'Unable to remove account due to related data.'
+        flash(error)
+        return redirect(url_for('blog.home'))
+
+    session.clear()
+    flash('Account disabled successfully.')
+    return redirect(url_for('blog.home'))
