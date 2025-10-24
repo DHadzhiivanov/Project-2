@@ -5,12 +5,16 @@
 {% endblock %}
 
 {% block content %}
-<p>Encrypt and decrypt your messages securely.</p>
 <form method="POST">
     <label for="title"><b>Title:</b></label><br>
-    <input id="title" name="title" type="text">{{ title }}<br><br>
+    <input id="title" name="title" type="text" value="{{ title|default('') }}"><br><br>
+
     <label for="message"><b>Message:</b></label><br>
-    <textarea id="message" name="message" rows="5" cols="60">{{ message }}</textarea><br><br>
-    <input type="submit" name="action" value="Save & Encrypt">
+    <textarea id="message" name="message" rows="8" cols="60">{{ message|default('') }}</textarea><br><br>
+
+    <label for="enc_password"><b>Encryption password</b></label><br>
+    <input id="enc_password" name="enc_password" type="password" required><br><br>
+
+    <button type="submit">Save & Encrypt</button>
 </form>
 {% endblock %}
