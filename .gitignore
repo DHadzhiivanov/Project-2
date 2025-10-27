@@ -1,14 +1,39 @@
-*.pyc
+# Python
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
 
+# Virtual environments
+venv/
+.venv/
+
+# Environment variables
+.env
+
+# Databases
 instance/
 *.sqlite
-*.sqlite.bak
+*.sqlite3
+*.db
+*.bak
 
+# Build/dist files
+build/
+dist/
+*.egg-info/
+
+# Testing / coverage
 .pytest_cache/
 .coverage
 htmlcov/
 
-dist/
-build/
-*.egg-info/
+# IDE stuff
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+*.log
