@@ -10,21 +10,10 @@
     <input id="title" name="title" type="text" value="{{ request.form.title or post['title'] }}" required><br><br>
 
     <label for="body"><b>Message:</b></label><br>
-    {% if decrypted_body is not none %}
-    <textarea id="body" name="body" rows="10" cols="80">{{ decrypted_body }}</textarea><br><br>
-    {% else %}
-    <textarea id="body" rows="10" cols="80" disabled
-        placeholder="Encrypted — provide the encryption password below and click Decrypt to reveal."></textarea><br><br>
-    {% endif %}
-
-    <label for="enc_password"><b>Encryption password</b></label><br>
-    <input id="enc_password" name="enc_password" type="password"><br>
-    <small>Provide the encryption password to reveal and edit the note.</small><br><br>
+    <textarea id="body" name="body" rows="10" cols="80">{{ request.form.body or post['body'] }}</textarea><br><br>
 
     <div>
-        <button type="submit" name="action" value="decrypt">Decrypt</button>
-        <button type="submit" name="action" value="save" {% if decrypted_body is none %}disabled{% endif %}>Save
-            (encrypt)</button>
+        <button type="submit">Save</button>
         <a href="{{ url_for('blog.posts') }}">Cancel</a>
     </div>
 </form>

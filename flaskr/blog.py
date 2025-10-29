@@ -2,11 +2,9 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
-from cryptography.exceptions import InvalidTag
 
 from flaskr.auth import login_required
 from flaskr.db import get_db
-from flaskr.encryption import encrypt_message, decrypt_message
 
 bp = Blueprint('blog', __name__)
 
@@ -31,31 +29,20 @@ def write():
     if request.method == 'POST':
         title = request.form.get('title', '').strip()
         body_plain = request.form.get('message', '')
-        enc_password = request.form.get('enc_password', '')
         error = None
 
         if not title:
             error = 'Title is required.'
         elif not body_plain:
             error = 'Message is required.'
-        elif not enc_password:
-            error = 'Encryption password is required to store the note.'
 
         if error is not None:
             flash(error)
         else:
-            # encrypt plaintext with provided password and store ciphertext
-            try:
-                body_encrypted = encrypt_message(body_plain, enc_password)
-            except Exception as e:
-                flash('Encryption failed.')
-                return render_template('write.html', title=title, message=body_plain)
-
             db = get_db()
             db.execute(
-                'INSERT INTO post (title, body, author_id)'
-                ' VALUES (?, ?, ?)',
-                (title, body_encrypted, g.user['id'])
+                'INSERT INTO post (title, body, author_id) VALUES (?, ?, ?)',
+                (title, body_plain, g.user['id'])
             )
             db.commit()
             return redirect(url_for('blog.posts'))
@@ -85,58 +72,25 @@ def get_post(id, check_author=True):
 def update(id):
     post = get_post(id)
 
-    # default: no decrypted body
-    decrypted_body = None
-
     if request.method == 'POST':
-        action = request.form.get('action', 'save')
-        if action == 'decrypt':
-            # attempt to decrypt stored ciphertext using provided password
-            enc_password = request.form.get('enc_password', '')
-            if not enc_password:
-                flash('Encryption password is required to decrypt.')
-            else:
-                try:
-                    decrypted_body = decrypt_message(
-                        post['body'], enc_password)
-                except InvalidTag:
-                    flash('Wrong password or corrupted data.')
-                except Exception:
-                    flash('Decryption failed.')
-            # render template with decrypted_body (if successful it will be shown in textarea)
-            return render_template('update.html', post=post, decrypted_body=decrypted_body)
+        title = request.form.get('title', '').strip()
+        body_plain = request.form.get('body', '')
+        error = None
 
-        elif action == 'save':
-            # saving: encrypt the provided plaintext body with supplied password
-            title = request.form.get('title', '').strip()
-            body_plain = request.form.get('body', '')
-            enc_password = request.form.get('enc_password', '')
-            error = None
+        if not title:
+            error = 'Title is required.'
 
-            if not title:
-                error = 'Title is required.'
-            elif not enc_password:
-                error = 'Encryption password is required to save the note.'
-
-            if error is not None:
-                flash(error)
-            else:
-                try:
-                    body_encrypted = encrypt_message(body_plain, enc_password)
-                except Exception:
-                    flash('Encryption failed.')
-                    return render_template('update.html', post=post, decrypted_body=body_plain)
-
-                db = get_db()
-                db.execute(
-                    'UPDATE post SET title = ?, body = ? WHERE id = ?',
-                    (title, body_encrypted, id)
-                )
-                db.commit()
-                return redirect(url_for('blog.posts'))
-
-    # GET: render page showing encrypted body by default
-    return render_template('update.html', post=post, decrypted_body=decrypted_body)
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE post SET title = ?, body = ? WHERE id = ?',
+                (title, body_plain, id)
+            )
+            db.commit()
+            return redirect(url_for('blog.posts'))
+    return render_template('update.html', post=post)
 
 
 @bp.route('/<int:id>/delete', methods=('POST',))
