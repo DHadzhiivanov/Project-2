@@ -49,10 +49,23 @@ def test_update_and_delete_by_author(client):
     m = re.search(rb"href=\"/([0-9]+)/update\"", rv.data)
     assert m, "Expected edit link in posts list"
     post_id = int(m.group(1))
+    # capture one-time key from posts page
+    mk = re.search(rb'id="one-time-key".*?<code>([^<]+)</code>', rv.data, re.S)
+    assert mk, "Expected one-time key on first save"
+    key_raw = mk.group(1).decode()
+    from html import unescape
+    key = unescape(key_raw)
 
-    # Update
-    rv = client.post(f"/{post_id}/update",
-                     data={"title": "New", "body": "New body"})
+    # Decrypt step
+    rv = client.post(f"/{post_id}/update", data={"key": key, "decrypt": "1"})
+    assert rv.status_code == 200
+    assert b"Save" in rv.data
+
+    # Save updated content (re-encrypts with same key)
+    rv = client.post(
+        f"/{post_id}/update",
+        data={"key": key, "title": "New", "body": "New body", "save": "1"},
+    )
     assert rv.status_code == 302 and "/posts" in rv.headers.get("Location", "")
     rv = client.get("/posts")
     assert b"New" in rv.data

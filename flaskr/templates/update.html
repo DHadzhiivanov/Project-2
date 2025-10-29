@@ -5,18 +5,32 @@
 {% endblock %}
 
 {% block content %}
+{% if not decrypted %}
 <form method="post">
-    <label for="title"><b>Title:</b></label><br>
-    <input id="title" name="title" type="text" value="{{ request.form.title or post['title'] }}" required><br><br>
+    <label for="key">Key</label>
+    <input id="key" name="key" type="text" required>
+    <button type="submit" name="decrypt" value="1">Decrypt</button>
+    <a href="{{ url_for('blog.posts') }}">Cancel</a>
+    <div style="margin-top:1rem">
+        <div><b>Title:</b> {{ post['title'] }}</div>
+        <textarea rows="6" cols="80" disabled>{{ post['body'] }}</textarea>
+    </div>
+</form>
+{% else %}
+<form method="post">
+    <input type="hidden" name="key" value="{{ key }}">
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text" value="{{ post['title'] }}" required>
 
-    <label for="body"><b>Message:</b></label><br>
-    <textarea id="body" name="body" rows="10" cols="80">{{ request.form.body or post['body'] }}</textarea><br><br>
+    <label for="body">Message</label>
+    <textarea id="body" name="body" rows="10" cols="80">{{ body_plain }}</textarea>
 
     <div>
-        <button type="submit">Save</button>
+        <button type="submit" name="save" value="1">Save</button>
         <a href="{{ url_for('blog.posts') }}">Cancel</a>
     </div>
 </form>
+{% endif %}
 
 <hr>
 <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post"

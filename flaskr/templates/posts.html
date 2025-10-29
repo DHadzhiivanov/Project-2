@@ -7,6 +7,9 @@
 {% endblock %}
 
 {% block content %}
+{% if one_time_key %}
+<p id="one-time-key">Key: <code>{{ one_time_key }}</code></p>
+{% endif %}
 {% for post in posts %}
 <article class="post">
     <header>
