@@ -22,7 +22,7 @@ def posts():
         (g.user['id'],)
     ).fetchall()
     one_time_key = session.pop('one_time_key', None)
-    return render_template('posts.html', posts=posts, one_time_key=one_time_key)
+    return render_template('notes.html', posts=posts, one_time_key=one_time_key)
 
 
 @bp.route('/write', methods=('GET', 'POST'))

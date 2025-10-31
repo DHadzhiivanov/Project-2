@@ -7,7 +7,7 @@
 {% block content %}
 <p>This will permanently remove your account and related data. You will be logged out.</p>
 
-<form method="post" action="{{ url_for('auth.disable') }}"
+<form method="post" action="{{ url_for('auth.delete_account') }}"
     onsubmit="return confirm('Delete account? This cannot be undone!');">
     <label for="password">Confirm your password</label><br>
     <input id="password" name="password" type="password" required><br><br>

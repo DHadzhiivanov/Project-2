@@ -1,4 +1,5 @@
 import functools
+import sqlite3
 from hashlib import sha256
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
@@ -83,29 +84,25 @@ def logout():
 
 def login_required(view):
     @functools.wraps(view)
-    def wrapped_view(**kwargs):
+    def wrapped_view(*args, **kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))
-        return view(**kwargs)
+        return view(*args, **kwargs)
     return wrapped_view
 
 
-@bp.route('/disable', methods=('GET',))
+@bp.route('/delete_account', methods=('GET',))
 @login_required
-def disable_page():
-    """Show a confirmation page with a form to disable the account."""
+def delete_account_page():
     return render_template('auth/disable.html')
 
 
-@bp.route('/disable', methods=('POST',))
+@bp.route('/delete_account', methods=('POST',))
 @login_required
-def disable():
+def delete_account():
     confirmation = request.form.get('password', '')
-    error = None
-
     if not check_password_hash(g.user['password'], confirmation):
-        error = 'Wrong password.'
-        flash(error)
+        flash('Wrong password.')
         return redirect(url_for('blog.home'))
 
     db = get_db()
@@ -113,11 +110,23 @@ def disable():
         db.execute('DELETE FROM post WHERE author_id = ?', (g.user['id'],))
         db.execute('DELETE FROM user WHERE id = ?', (g.user['id'],))
         db.commit()
-    except db.IntegrityError:
-        error = 'Unable to remove account due to related data.'
-        flash(error)
+    except sqlite3.IntegrityError:
+        flash('Unable to delete account due to related data.')
         return redirect(url_for('blog.home'))
 
     session.clear()
-    flash('Account disabled successfully.')
+    flash('Account deleted successfully.')
     return redirect(url_for('blog.home'))
+
+
+# Backward-compatible routes for tests or old links
+@bp.route('/disable', methods=('GET',))
+@login_required
+def disable_page():
+    return delete_account_page()
+
+
+@bp.route('/disable', methods=('POST',))
+@login_required
+def disable():
+    return delete_account()
