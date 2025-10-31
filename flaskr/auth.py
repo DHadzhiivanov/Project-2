@@ -117,16 +117,3 @@ def delete_account():
     session.clear()
     flash('Account deleted successfully.')
     return redirect(url_for('blog.home'))
-
-
-# Backward-compatible routes for tests or old links
-@bp.route('/disable', methods=('GET',))
-@login_required
-def disable_page():
-    return delete_account_page()
-
-
-@bp.route('/disable', methods=('POST',))
-@login_required
-def disable():
-    return delete_account()
